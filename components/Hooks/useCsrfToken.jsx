@@ -16,5 +16,5 @@ export default function useCsrfToken(){
         }
         fetchCsfr()
     }, [])
-    return csrfToken
+    return csrfToken;
 }
