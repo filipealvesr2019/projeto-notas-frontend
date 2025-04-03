@@ -6,4 +6,15 @@ export default function LoginForm(){
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [mensagem, setMensagem] = useState("");
+
+   const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try{
+        const res = await fetch("")
+
+    }catch(error){
+        console.log(error)
+    }
+   }
 }
