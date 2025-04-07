@@ -11,7 +11,15 @@ export default function LoginForm(){
     e.preventDefault();
 
     try{
-        const res = await fetch("")
+        const res = await fetch("http://localhost:3000/api/users/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-type": "aplication/json",
+                "csrf-token": csrfToken
+            },
+            body: JSON.stringify({ email, senha})
+        })
 
     }catch(error){
         console.log(error)
