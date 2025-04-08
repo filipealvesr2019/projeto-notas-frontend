@@ -19,10 +19,30 @@ export default function LoginForm(){
                 "csrf-token": csrfToken
             },
             body: JSON.stringify({ email, senha})
-        })
+        });
+
+        const data = await res.json();
+        if(res.ok){
+            setMensagem("Logim bem sucedido")
+        }{
+            setMensagem(`${data.error} erro ao fazer login`)
+        }
 
     }catch(error){
         console.log(error)
     }
    }
+
+   return (
+    <form onSubmit={handleLogin} style={{
+        display:"flex",
+        flexDirection:"column"
+    }}>
+<div>
+    <label>email</label>
+    <input type="email" value={email}/>
+</div>
+
+    </form>
+   )
 }
