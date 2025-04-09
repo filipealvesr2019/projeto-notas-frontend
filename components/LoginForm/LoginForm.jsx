@@ -24,8 +24,7 @@ export default function LoginForm() {
       const data = await res.json();
       if (res.ok) {
         setMensagem("Logim bem sucedido");
-      }
-      {
+      } else{
         setMensagem(`${data.error} erro ao fazer login`);
       }
     } catch (error) {
@@ -42,9 +41,14 @@ export default function LoginForm() {
       }}
     >
       <div>
-        <label>email</label>
-        <input type="email" value={email} />
+        <label>Email:</label>
+        <input type="email" value={email} onChange={((e) => setMensagem(e.target.value))} required/>
       </div>
+      <div>
+        <label>Senha:</label>
+        <input type="password" value={senha} onChange={((e) => setSenha(e.target.value))} required/>
+      </div>
+      <button type="submit"></button>
     </form>
   );
 }
