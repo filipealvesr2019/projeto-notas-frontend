@@ -40,6 +40,7 @@ export default function LoginForm() {
         flexDirection: "column",
       }}
     >
+      {mensagem && <p>{mensagem}</p>}
       <div>
         <label>Email:</label>
         <input type="email" value={email} onChange={((e) => setMensagem(e.target.value))} required/>
