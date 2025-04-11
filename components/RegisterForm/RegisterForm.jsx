@@ -12,8 +12,19 @@ export default function RegisterForm(){
 
         try{
             const res = await fetch('', {
-                method: "POST"
-            })
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                    "csrf-token": csrfToken
+                },
+                body: JSON.stringify({nome, email, senha })
+            });
+
+            const data = await res.json();
+            if(res.ok){
+                setMensagem("Registro com sucesso!");
+            }
 
         }catch(error){
             console.log(error)
