@@ -23,15 +23,27 @@ export default function RegisterForm(){
 
             const data = await res.json();
             if(res.ok){
-                setMensagem("Registro com sucesso!");
+                setMensagem("✅ Registro com sucesso!");
+                setNome("");
+                setEmail("");
+                setSenha("");
+            } else {
+                setMensagem("❌ " + (data.errors ? data.errors[0].msg : data.error) || 'erro ao registrar' )
             }
 
         }catch(error){
             console.log(error)
+            setMensagem("❌ Erro ao registrar");
+
         }
     } 
     return (
-        <form action="">
+        <form onSubmit={handleRegister}>
+            <h2>Registrar</h2>
+            <div>
+                <label htmlFor="">Nome</label>
+                
+            </div>
         </form>
     )
 }
