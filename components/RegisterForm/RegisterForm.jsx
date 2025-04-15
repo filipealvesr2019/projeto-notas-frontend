@@ -39,10 +39,20 @@ export default function RegisterForm(){
     } 
     return (
         <form onSubmit={handleRegister}>
+            {mensagem && <p>{mensagem}</p>}
             <h2>Registrar</h2>
             <div>
-                <label htmlFor="">Nome</label>
+                <label>Nome</label>
+                <input type="text"  value={nome} onChange={(e) => setNome(e.target.value)} required/>
                 
+            </div>
+            <div>
+                <label>Email</label>
+                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+            </div>
+            <div>
+                <label>Senha</label>
+                <input type="text" value={senha} onChange={(e) => setSenha(e.target.value)}/>
             </div>
         </form>
     )
