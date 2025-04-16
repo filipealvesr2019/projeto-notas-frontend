@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import useCsfrToken from "../Hooks/useCsrfToken";
 
@@ -43,13 +44,13 @@ export default function LoginForm() {
       {mensagem && <p>{mensagem}</p>}
       <div>
         <label>Email:</label>
-        <input type="email" value={email} onChange={((e) => setMensagem(e.target.value))} required/>
+        <input type="email" value={email} onChange={((e) => setEmail(e.target.value))} required/>
       </div>
       <div>
         <label>Senha:</label>
         <input type="password" value={senha} onChange={((e) => setSenha(e.target.value))} required/>
       </div>
-      <button type="submit"></button>
+      <button type="submit">cadastrar</button>
     </form>
   );
 }

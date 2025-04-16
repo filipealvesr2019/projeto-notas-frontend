@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react"
 import useCsfrToken from '../Hooks/useCsrfToken'
 export default function RegisterForm(){
@@ -11,7 +12,7 @@ export default function RegisterForm(){
         e.preventDefault();
 
         try{
-            const res = await fetch('', {
+            const res = await fetch('http://localhost:3000/api/register', {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -54,6 +55,7 @@ export default function RegisterForm(){
                 <label>Senha</label>
                 <input type="text" value={senha} onChange={(e) => setSenha(e.target.value)}/>
             </div>
+            <button type="submit">Registrar</button>
         </form>
     )
 }
