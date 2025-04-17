@@ -12,7 +12,7 @@ export default function RegisterForm(){
         e.preventDefault();
 
         try{
-            const res = await fetch('http://localhost:3000/api/register', {
+            const res = await fetch('http://localhost:3000/api/users/register', {
                 method: "POST",
                 credentials: "include",
                 headers: {
