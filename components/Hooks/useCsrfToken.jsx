@@ -1,13 +1,12 @@
-import { useEffect } from "react";
-import { useFormState } from "react-dom";
+import { useEffect, useState } from "react";
 
 export default function useCsrfToken(){
-    const [csrfToken, setCsrfToken] = useFormState("");
+    const [csrfToken, setCsrfToken] = useState("");
 
     useEffect(() => {
         const fetchCsfr = async () => {
             try{
-                const res = await fetch("", {credentials: "include"});
+                const res = await fetch("http://localhost:3000/csrf-token", {credentials: "include"});
                 const data = await res.json();
                 setCsrfToken(data.csrfToken)
             }catch(error){
