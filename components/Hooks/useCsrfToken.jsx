@@ -6,7 +6,10 @@ export default function useCsrfToken(){
     useEffect(() => {
         const fetchCsfr = async () => {
             try{
-                 const res = await fetch("http://localhost:3001/csrf-token", {credentials: "include"})
+                 const res = await fetch("http://localhost:3000/csrf-token", 
+                    {   method: "GET",
+                        credentials: "include"
+                    })
                 const data = await res.json();
                 setCsrfToken(data.csrfToken)
             }catch(error){
