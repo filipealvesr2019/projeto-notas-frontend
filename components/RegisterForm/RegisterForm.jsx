@@ -11,6 +11,11 @@ export default function RegisterForm(){
     const handleRegister = async (e) => {
         e.preventDefault();
 
+        if(!csrfToken){
+            setMensagem("❌ Erro ao registrar: CSRF token não encontrado")
+            return;
+        }
+
         try{
             const res = await fetch('http://localhost:3000/api/users/register', {
                 method: "POST",
@@ -55,7 +60,7 @@ export default function RegisterForm(){
                 <label>Senha</label>
                 <input type="text" value={senha} onChange={(e) => setSenha(e.target.value)}/>
             </div>
-            <button type="submit">Registrar</button>
+            <button type="submit" disabled={!csrfToken}>Registrar</button>
         </form>
     )
 }
