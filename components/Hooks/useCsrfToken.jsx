@@ -12,7 +12,7 @@ export default function useCsrfToken(){
                     })
                 const data = await res.json();
                 setCsrfToken(data.csrfToken)
-                console.log('CSRF Token:', data.csrfToken)
+                // console.log('CSRF Token:', data.csrfToken)
             }catch(error){
                 console.log('Erro ao buscar', error);
             }
