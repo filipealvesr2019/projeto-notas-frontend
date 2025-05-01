@@ -10,13 +10,13 @@ export default function RegisterForm(){
 
     const handleRegister = async (e) => {
         e.preventDefault();
-
-        if(!csrfToken){
-            setMensagem("❌ Erro ao registrar: CSRF token não encontrado")
+    
+        if (!csrfToken) {
+            setMensagem("❌ Erro ao registrar: CSRF token não encontrado");
             return;
         }
-
-        try{
+    
+        try {
             const res = await fetch('http://localhost:3000/api/users/register', {
                 method: "POST",
                 credentials: "include",
@@ -24,25 +24,28 @@ export default function RegisterForm(){
                     "Content-Type": "application/json",
                     "csrf-token": csrfToken
                 },
-                body: JSON.stringify({nome, email, senha })
+                body: JSON.stringify({ nome, email, senha })
             });
-
-            const data = await res.json();
-            if(res.ok){
-                setMensagem("✅ Registro com sucesso!");
-                setNome("");
-                setEmail("");
-                setSenha("");
-            } else {
-                setMensagem("❌ " + (data.errors ? data.errors[0].msg : data.error) || 'erro ao registrar' )
+    
+            // Verifica se a resposta não é OK (status 200)
+            if (!res.ok) {
+                const errorMessage = await res.text(); // Captura a resposta como texto
+                throw new Error(`Erro: ${errorMessage}`);
             }
-
-        }catch(error){
-            console.log(error)
-            setMensagem("❌ Erro ao registrar");
-
+    
+            // Tenta fazer o parse da resposta como JSON
+            const data = await res.json();
+            setMensagem("✅ Registro com sucesso!");
+            setNome("");
+            setEmail("");
+            setSenha("");
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            // Adiciona uma mensagem de erro mais útil para o usuário
+            setMensagem(`❌ Erro ao registrar: ${error.message || 'Erro desconhecido'}`);
         }
-    } 
+    };
+    
     return (
         <form onSubmit={handleRegister}>
             {mensagem && <p>{mensagem}</p>}
